@@ -1,3 +1,5 @@
+import "react-chat-elements/dist/main.css";
+
 import {
   json,
   TypedResponse,
@@ -10,6 +12,8 @@ import {
   useLoaderData,
   useNavigation,
 } from "@remix-run/react";
+import { useEffect, useRef, useState } from "react";
+import { ITextMessage, MessageList } from "react-chat-elements";
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,50 +22,134 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader(): Promise<TypedResponse<{ message: string }>> {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  console.log("load data in server!!");
-  return json({ message: "Hello World" });
+interface IActionResponse {
+  type: "model" | "user";
+  text: string;
 }
 
 export async function action(
   req: ActionFunctionArgs
-): Promise<TypedResponse<{ message: string }>> {
+): Promise<TypedResponse<IActionResponse[]>> {
   await new Promise((resolve) => setTimeout(resolve, 500));
-  console.log(`do action in server with ${req.request.method}!!`);
-  return json({ message: `This is Server Action with ${req.request.method}` });
+  const data = await req.request.formData();
+
+  const historyData = data.get("history");
+  const histories: IActionResponse[] = historyData
+    ? JSON.parse(historyData)
+    : [];
+
+  console.log(histories);
+
+  // TODO: ここで LLM を呼び出す
+
+  const message = data.get("message");
+  histories.push({
+    type: "user",
+    text: message ?? "",
+  });
+  histories.push({
+    type: "model",
+    text: "this is sample model response message",
+  });
+
+  return json(histories);
+}
+
+function toChatMessage({
+  id,
+  isSelf,
+  text,
+}: {
+  id: string;
+  isSelf: boolean;
+  text: string;
+}): ITextMessage {
+  return {
+    id,
+    position: isSelf ? "right" : "left",
+    type: "text",
+    text,
+    notch: true,
+    retracted: false,
+    focus: false,
+    forwarded: false,
+    removeButton: false,
+    replyButton: false,
+  };
 }
 
 export default function Index() {
-  const data = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
   const navigaeion = useNavigation();
+  const messageRef = useRef();
 
-  const actionMessge =
-    navigaeion.state === "loading" || navigaeion.state === "submitting"
-      ? "loading"
-      : actionData?.message ?? "no action";
+  const [dataSources, setDataSources] = useState<ITextMessage[]>([]);
+
+  useEffect(() => {
+    const chatMessages = actionData?.map((data, index) => {
+      return toChatMessage({
+        id: `${index + 1}`,
+        isSelf: data.type === "user",
+        text: data.text,
+      });
+    });
+    setDataSources(chatMessages ?? []);
+    console.log(chatMessages);
+  }, [actionData]);
+
+  const isLoading =
+    navigaeion.state === "loading" || navigaeion.state === "submitting";
 
   return (
-    <>
-      <div>
-        <h1>Navigation</h1>
-        <p>{navigaeion.state}</p>
-      </div>
-      <div>
-        <h1>Loading Demo</h1>
-        <p>{data.message}</p>
-      </div>
-      <div>
-        <h1>Action Demo</h1>
-        <Form method="post">
-          <button type="submit">click me</button>
-        </Form>
-        <Form method="delete">
-          <button type="submit">click me with delete</button>
-        </Form>
-        <p>{actionMessge}</p>
-      </div>
-    </>
+    <main
+      style={{
+        width: "1024px",
+        margin: "0 auto",
+      }}
+    >
+      <h1>Chat Demo</h1>
+
+      <Form method="post">
+        <div>
+          <MessageList
+            className="message-list"
+            referance={messageRef}
+            lockable={true}
+            toBottomHeight="100%"
+            messageBoxStyles={{}}
+            dataSource={dataSources}
+          />
+          <div
+            style={{
+              padding: "2rem",
+              textAlign: "right",
+            }}
+          >
+            <input
+              type="hidden"
+              name="history"
+              value={JSON.stringify(actionData)}
+            />
+            <textarea
+              rows={5}
+              name="message"
+              disabled={isLoading}
+              onKeyDown={(e) => {
+                if (e.code === "Enter" && e.ctrlKey) {
+                  e.stopPropagation();
+                }
+              }}
+              style={{
+                resize: "none",
+                width: "100%",
+              }}
+            />
+            <button type="submit" disabled={isLoading}>
+              送信
+            </button>
+          </div>
+        </div>
+      </Form>
+    </main>
   );
 }
