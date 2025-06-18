@@ -1,12 +1,15 @@
 package handler
 
 import (
+	"booklog-pile/internal/db"
 	"booklog-pile/internal/model"
+	"errors"
 	"net/http"
-	"time"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
+	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 )
 
 // RegisterUser は新規ユーザーを登録する
@@ -17,16 +20,30 @@ func RegisterUser(c *gin.Context) {
 		return
 	}
 
-	// 本来はここでデータベースにユーザーを保存する
-	// emailの重複チェックなども行う
-
-	newUser := model.User{
-		ID:        uuid.NewString(),
-		Username:  req.Username,
-		Email:     req.Email,
-		CreatedAt: time.Now(),
+	// パスワードをハッシュ化
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
+		return
 	}
 
+	// 新規ユーザーオブジェクトを作成
+	newUser := model.User{
+		Username: req.Username,
+		Email:    req.Email,
+		Password: string(hashedPassword),
+	}
+
+	// データベースにユーザーを保存
+	result := db.DB.Create(&newUser)
+	if result.Error != nil {
+		// emailやusernameの重複エラーなどをハンドリング
+		c.JSON(http.StatusConflict, gin.H{"error": "Email or username already exists"})
+		return
+	}
+
+	// パスワードフィールドを隠してレスポンスを返す
+	newUser.Password = ""
 	c.JSON(http.StatusCreated, newUser)
 }
 
@@ -38,14 +55,26 @@ func LoginUser(c *gin.Context) {
 		return
 	}
 
-	// 本来はここでデータベースのユーザー情報と照合する
-	// if email not found or password mismatch {
-	// 	c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
-	// 	return
-	// }
+	// emailを元にデータベースからユーザーを検索
+	var user model.User
+	if err := db.DB.Where("email = ?", req.Email).First(&user).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database error"})
+		return
+	}
 
-	// 認証成功後、JWTを生成する
-	accessToken := "dummy-jwt-access-token-for-" + req.Email
+	// パスワードを検証
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(req.Password)); err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
+		return
+	}
+
+	// 認証成功後、ダミーのJWTを生成する
+	// 本番環境では、標準的なJWTライブラリを使用すること
+	accessToken := "dummy-jwt-access-token-for-user-" + strconv.FormatUint(uint64(user.ID), 10)
 
 	c.JSON(http.StatusOK, gin.H{
 		"accessToken": accessToken,

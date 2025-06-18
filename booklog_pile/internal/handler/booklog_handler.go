@@ -1,71 +1,44 @@
 package handler
 
 import (
+	"booklog-pile/internal/db"
 	"booklog-pile/internal/model"
+	"errors"
 	"net/http"
-	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
-
-// モックデータ用の共通インスタンス
-var mockUser = model.User{
-	ID:        uuid.NewString(),
-	Username:  "booklover",
-	Email:     "user@example.com",
-	CreatedAt: time.Now().Add(-30 * 24 * time.Hour),
-}
-
-var mockBook1 = model.Book{
-	ISBN:          "9784101010015",
-	Title:         "こころ",
-	Author:        "夏目漱石",
-	Publisher:     "新潮社",
-	PublishedDate: "1989-05-20",
-	Description:   "先生と私、二人の人間のこころの触れ合いを描いた名作。",
-	PageCount:     280,
-	ThumbnailURL:  "https://cover.openbd.jp/9784101010015.jpg",
-}
-
-var mockBook2 = model.Book{
-	ISBN:          "9784167158057",
-	Title:         "人間失格",
-	Author:        "太宰治",
-	Publisher:     "角川書店",
-	PublishedDate: "1985-05-25",
-	Description:   "自己の生涯を作品に昇華させた太宰文学の代表作。",
-	PageCount:     180,
-	ThumbnailURL:  "https://cover.openbd.jp/9784167158057.jpg",
-}
 
 // GetMyBooklog は自分の蔵書リストを取得する
 func GetMyBooklog(c *gin.Context) {
+	userId, _ := c.Get("userId")
 	status := c.Query("status")
 
-	// 本来はDBからユーザーの蔵書リストを取得する
-	allEntries := []model.BooklogEntry{
-		{ID: uuid.NewString(), User: mockUser, Book: mockBook1, Status: model.StatusTsundoku, AddedAt: time.Now().Add(-10 * 24 * time.Hour)},
-		{ID: uuid.NewString(), User: mockUser, Book: mockBook2, Status: model.StatusReading, AddedAt: time.Now().Add(-5 * 24 * time.Hour)},
+	query := db.DB.Where("user_id = ?", userId).Preload("Book").Preload("User")
+
+	if status != "" {
+		query = query.Where("status = ?", status)
 	}
 
-	if status == "" {
-		c.JSON(http.StatusOK, allEntries)
+	var entries []model.BooklogEntry
+	if err := query.Find(&entries).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve booklog"})
 		return
 	}
 
-	var filteredEntries []model.BooklogEntry
-	for _, entry := range allEntries {
-		if string(entry.Status) == status {
-			filteredEntries = append(filteredEntries, entry)
-		}
+	if entries == nil {
+		entries = []model.BooklogEntry{}
 	}
 
-	c.JSON(http.StatusOK, filteredEntries)
+	c.JSON(http.StatusOK, entries)
 }
 
 // AddBookToBooklog は蔵書リストに本を追加する
 func AddBookToBooklog(c *gin.Context) {
+	userId, _ := c.Get("userId")
+	user, _ := c.Get("user")
+
 	var req struct {
 		ISBN string `json:"isbn" binding:"required"`
 	}
@@ -74,25 +47,55 @@ func AddBookToBooklog(c *gin.Context) {
 		return
 	}
 
-	// 本来はISBNを元に書籍情報を取得し、DBに蔵書エントリを作成する
-	// 既に追加済みかのチェックも行う
+	// ISBNを元に書籍情報を探す。なければダミーデータで作成する。
+	// 本来はここで外部API(e.g., Google Books API)を叩いて書籍情報を取得する
+	book := model.Book{ISBN: req.ISBN}
+	err := db.DB.FirstOrCreate(&book, model.Book{
+		ISBN:         req.ISBN,
+		Title:        "タイトル不明",
+		Author:       "著者不明",
+		Publisher:    "出版社不明",
+		PublishedDate: "日付不明",
+		Description:  "情報なし",
+		PageCount:    0,
+		ThumbnailURL: "",
+	}).Error
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get or create book"})
+		return
+	}
+
+	// 既に同じ本を登録済みかチェック
+	var existingEntry model.BooklogEntry
+	err = db.DB.Where("user_id = ? AND book_isbn = ?", userId, req.ISBN).First(&existingEntry).Error
+	if !errors.Is(err, gorm.ErrRecordNotFound) {
+		c.JSON(http.StatusConflict, gin.H{"error": "This book is already in your booklog"})
+		return
+	}
 
 	newEntry := model.BooklogEntry{
-		ID:      uuid.NewString(),
-		User:    mockUser,
-		Book:    mockBook1, // ダミーで固定の書籍を返す
-		Status:  model.StatusTsundoku,
-		AddedAt: time.Now(),
+		UserID:   userId.(uint),
+		BookISBN: req.ISBN,
+		Status:   model.StatusTsundoku,
 	}
-	// リクエストされたISBNをBook情報に反映
-	newEntry.Book.ISBN = req.ISBN
+
+	if err := db.DB.Create(&newEntry).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add book to booklog"})
+		return
+	}
+
+	// レスポンスのためにUserとBookの情報を付与する
+	newEntry.User = user.(model.User)
+	newEntry.Book = book
 
 	c.JSON(http.StatusCreated, newEntry)
 }
 
 // UpdateBooklogStatus は蔵書のステータスを更新する
 func UpdateBooklogStatus(c *gin.Context) {
+	userId, _ := c.Get("userId")
 	booklogId := c.Param("booklogId")
+
 	var req struct {
 		Status model.BookStatus `json:"status" binding:"required"`
 	}
@@ -101,26 +104,47 @@ func UpdateBooklogStatus(c *gin.Context) {
 		return
 	}
 
-	// 本来はDBからbooklogIdに対応するエントリを探し、ステータスを更新する
-	// 見つからなければ404を返す
-
-	updatedEntry := model.BooklogEntry{
-		ID:      booklogId,
-		User:    mockUser,
-		Book:    mockBook1,
-		Status:  req.Status, // リクエストされたステータスに更新
-		AddedAt: time.Now().Add(-10 * 24 * time.Hour),
+	// 対象のエントリをDBから探す（自分の所有物かどうかもチェック）
+	var entry model.BooklogEntry
+	err := db.DB.Where("id = ? AND user_id = ?", booklogId, userId).First(&entry).Error
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Booklog entry not found"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Database error"})
+		return
 	}
 
-	c.JSON(http.StatusOK, updatedEntry)
+	// ステータスを更新
+	if err := db.DB.Model(&entry).Update("status", req.Status).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update status"})
+		return
+	}
+
+	// 更新後のエントリを返すためにリレーションを読み込む
+	db.DB.Preload("Book").Preload("User").First(&entry, entry.ID)
+
+	c.JSON(http.StatusOK, entry)
 }
 
 // DeleteBooklogEntry は蔵書を削除する
 func DeleteBooklogEntry(c *gin.Context) {
-	_ = c.Param("booklogId") // booklogId を取得
+	userId, _ := c.Get("userId")
+	booklogId := c.Param("booklogId")
 
-	// 本来はDBからbooklogIdに対応するエントリを削除する
-	// 見つからなければ404を返す
+	// DBからbooklogIdとuserIdに一致するエントリを削除する
+	result := db.DB.Where("id = ? AND user_id = ?", booklogId, userId).Delete(&model.BooklogEntry{})
+
+	if result.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete entry"})
+		return
+	}
+
+	if result.RowsAffected == 0 {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Booklog entry not found"})
+		return
+	}
 
 	c.Status(http.StatusNoContent)
 }

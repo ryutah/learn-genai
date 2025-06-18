@@ -1,6 +1,8 @@
 package model
 
-import "time"
+import (
+	"gorm.io/gorm"
+)
 
 // BookStatus は書籍の読書ステータスを表す
 type BookStatus string
@@ -13,10 +15,10 @@ const (
 
 // User はユーザー情報を表す
 type User struct {
-	ID        string    `json:"id"`
-	Username  string    `json:"username"`
-	Email     string    `json:"email"`
-	CreatedAt time.Time `json:"createdAt"`
+	gorm.Model
+	Username string `json:"username" gorm:"unique"`
+	Email    string `json:"email" gorm:"unique"`
+	Password string `json:"-"` // パスワードはレスポンスに含めない
 }
 
 // UserRegistration は新規ユーザー登録のリクエストボディを表す
@@ -34,7 +36,7 @@ type UserLogin struct {
 
 // Book は書籍情報を表す
 type Book struct {
-	ISBN          string `json:"isbn"`
+	ISBN          string `json:"isbn" gorm:"primaryKey"`
 	Title         string `json:"title"`
 	Author        string `json:"author"`
 	Publisher     string `json:"publisher"`
@@ -46,20 +48,22 @@ type Book struct {
 
 // BooklogEntry は蔵書リストのエントリを表す
 type BooklogEntry struct {
-	ID      string     `json:"id"`
-	User    User       `json:"user"`
-	Book    Book       `json:"book"`
-	Status  BookStatus `json:"status"`
-	AddedAt time.Time  `json:"addedAt"`
+	gorm.Model
+	UserID   uint       `json:"-"`
+	User     User       `json:"user"`
+	BookISBN string     `json:"-"`
+	Book     Book       `json:"book"`
+	Status   BookStatus `json:"status" gorm:"default:'積読'"`
 }
 
 // Review は感想を表す
 type Review struct {
-	ID         string    `json:"id"`
-	User       User      `json:"user"`
-	Comment    string    `json:"comment"`
-	HasSpoiler bool      `json:"hasSpoiler"`
-	CreatedAt  time.Time `json:"createdAt"`
+	gorm.Model
+	UserID         uint   `json:"-"`
+	User           User   `json:"user"`
+	BooklogEntryID uint   `json:"-"`
+	Comment        string `json:"comment"`
+	HasSpoiler     bool   `json:"hasSpoiler"`
 }
 
 // ReviewInput は感想投稿のリクエストボディを表す
