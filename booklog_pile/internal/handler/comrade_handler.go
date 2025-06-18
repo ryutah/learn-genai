@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 // SearchComrades は同志を探す
@@ -20,16 +20,20 @@ func SearchComrades(c *gin.Context) {
 	// 本来はDBで指定されたISBNを「積読」にしている他のユーザーを検索する
 	mockComrades := []model.User{
 		{
-			ID:        uuid.NewString(),
-			Username:  "comrade1",
-			Email:     "comrade1@example.com",
-			CreatedAt: time.Now().Add(-50 * 24 * time.Hour),
+			Model: gorm.Model{
+				ID:        101,
+				CreatedAt: time.Now().Add(-50 * 24 * time.Hour),
+			},
+			Username: "comrade1",
+			Email:    "comrade1@example.com",
 		},
 		{
-			ID:        uuid.NewString(),
-			Username:  "comrade2",
-			Email:     "comrade2@example.com",
-			CreatedAt: time.Now().Add(-100 * 24 * time.Hour),
+			Model: gorm.Model{
+				ID:        102,
+				CreatedAt: time.Now().Add(-100 * 24 * time.Hour),
+			},
+			Username: "comrade2",
+			Email:    "comrade2@example.com",
 		},
 	}
 

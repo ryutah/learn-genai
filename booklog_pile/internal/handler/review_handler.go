@@ -6,8 +6,18 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
+
+// mockUser はテスト用のダミーユーザー
+var mockUser = model.User{
+	Model: gorm.Model{
+		ID:        1,
+		CreatedAt: time.Now().Add(-365 * 24 * time.Hour),
+	},
+	Username: "test_user",
+	Email:    "test@example.com",
+}
 
 // GetReviews は本の感想一覧を取得する
 func GetReviews(c *gin.Context) {
@@ -16,18 +26,22 @@ func GetReviews(c *gin.Context) {
 	// 本来はbooklogIdに関連する感想をDBから取得する
 	mockReviews := []model.Review{
 		{
-			ID:         uuid.NewString(),
+			Model: gorm.Model{
+				ID:        1,
+				CreatedAt: time.Now().Add(-2 * 24 * time.Hour),
+			},
 			User:       mockUser,
 			Comment:    "非常に考えさせられる作品でした。",
 			HasSpoiler: false,
-			CreatedAt:  time.Now().Add(-2 * 24 * time.Hour),
 		},
 		{
-			ID:         uuid.NewString(),
-			User:       model.User{ID: uuid.NewString(), Username: "another_user"},
+			Model: gorm.Model{
+				ID:        2,
+				CreatedAt: time.Now().Add(-1 * 24 * time.Hour),
+			},
+			User:       model.User{Model: gorm.Model{ID: 2}, Username: "another_user"},
 			Comment:    "結末には驚きました。ネタバレあり。",
 			HasSpoiler: true,
-			CreatedAt:  time.Now().Add(-1 * 24 * time.Hour),
 		},
 	}
 
@@ -48,11 +62,13 @@ func PostReview(c *gin.Context) {
 	// 対象の蔵書が「読了」ステータスであるかチェックするなどのロジックも必要
 
 	newReview := model.Review{
-		ID:         uuid.NewString(),
+		Model: gorm.Model{
+			ID:        3, // 適当なID
+			CreatedAt: time.Now(),
+		},
 		User:       mockUser, // 投稿者は認証済みユーザー
 		Comment:    req.Comment,
 		HasSpoiler: req.HasSpoiler,
-		CreatedAt:  time.Now(),
 	}
 
 	c.JSON(http.StatusCreated, newReview)
