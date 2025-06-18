@@ -1,8 +1,9 @@
 package handler
 
 import (
-	"booklog-pile/internal/model"
 	"net/http"
+
+	"booklog-pile/internal/model"
 
 	"github.com/gin-gonic/gin"
 )

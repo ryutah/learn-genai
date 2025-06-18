@@ -1,10 +1,11 @@
 package handler
 
 import (
-	"booklog-pile/internal/db"
-	"booklog-pile/internal/model"
 	"errors"
 	"net/http"
+
+	"booklog-pile/internal/db"
+	"booklog-pile/internal/model"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -51,14 +52,14 @@ func AddBookToBooklog(c *gin.Context) {
 	// 本来はここで外部API(e.g., Google Books API)を叩いて書籍情報を取得する
 	book := model.Book{ISBN: req.ISBN}
 	err := db.DB.FirstOrCreate(&book, model.Book{
-		ISBN:         req.ISBN,
-		Title:        "タイトル不明",
-		Author:       "著者不明",
-		Publisher:    "出版社不明",
+		ISBN:          req.ISBN,
+		Title:         "タイトル不明",
+		Author:        "著者不明",
+		Publisher:     "出版社不明",
 		PublishedDate: "日付不明",
-		Description:  "情報なし",
-		PageCount:    0,
-		ThumbnailURL: "",
+		Description:   "情報なし",
+		PageCount:     0,
+		ThumbnailURL:  "",
 	}).Error
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get or create book"})

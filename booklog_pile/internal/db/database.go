@@ -1,10 +1,11 @@
 package db
 
 import (
-	"booklog-pile/internal/model"
 	"log"
 	"os"
 	"time"
+
+	"booklog-pile/internal/model"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
