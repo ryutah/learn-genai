@@ -1,0 +1,5 @@
+name: employee
+dsn: sqlite:./students.db
+docPath: docs/schema/students
+er:
+  skip: true
