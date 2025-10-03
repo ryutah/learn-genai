@@ -1,0 +1,622 @@
+[
+	{
+		"name": "Gender",
+		"type": "STRING",
+		"description": "Gender. Valid values: 0_総数 / 1_男 / 2_女"
+	},
+	{
+		"name": "Region_Code",
+		"type": "STRING",
+		"description": "Regional code for the area"
+	},
+	{
+		"name": "Prefecture",
+		"type": "STRING",
+		"description": "Prefecture name"
+	},
+	{
+		"name": "Estimated_Population_10_and_over",
+		"type": "INTEGER",
+		"description": "Estimated population of people aged 10 and over"
+	},
+	{
+		"name": "Total_Learning_and_Self_Development",
+		"type": "FLOAT",
+		"description": "Total percentage of people engaged in learning, self-development, or training"
+	},
+	{
+		"name": "Foreign_Languages",
+		"type": "FLOAT",
+		"description": "Percentage of people learning foreign languages"
+	},
+	{
+		"name": "English",
+		"type": "FLOAT",
+		"description": "Percentage of people learning English"
+	},
+	{
+		"name": "Foreign_Languages_Other_than_English",
+		"type": "FLOAT",
+		"description": "Percentage of people learning foreign languages other than English"
+	},
+	{
+		"name": "Total_Business_and_Commerce",
+		"type": "FLOAT",
+		"description": "Percentage of people learning commercial/business practices"
+	},
+	{
+		"name": "Information_Processing_PC_etc",
+		"type": "FLOAT",
+		"description": "Percentage of people learning information processing (e.g., PC skills)"
+	},
+	{
+		"name": "Business_and_Commerce_Practical",
+		"type": "FLOAT",
+		"description": "Percentage of people learning practical business skills"
+	},
+	{
+		"name": "Caregiving",
+		"type": "FLOAT",
+		"description": "Percentage of people learning about nursing and caregiving"
+	},
+	{
+		"name": "Home_Economics_and_Housekeeping",
+		"type": "FLOAT",
+		"description": "Percentage of people learning home economics/housekeeping (cooking, sewing, etc.)"
+	},
+	{
+		"name": "Humanities_Social_Natural_Sciences",
+		"type": "FLOAT",
+		"description": "Percentage of people learning humanities, social, or natural sciences"
+	},
+	{
+		"name": "Arts_and_Culture",
+		"type": "FLOAT",
+		"description": "Percentage of people learning arts and culture"
+	},
+	{
+		"name": "Other_Learning",
+		"type": "FLOAT",
+		"description": "Percentage of people engaged in other learning activities"
+	},
+	{
+		"name": "Total_Sports",
+		"type": "FLOAT",
+		"description": "Total percentage of people participating in sports"
+	},
+	{
+		"name": "Baseball_including_catch",
+		"type": "FLOAT",
+		"description": "Percentage of people who play baseball (including playing catch)"
+	},
+	{
+		"name": "Softball",
+		"type": "FLOAT",
+		"description": "Percentage of people who play softball"
+	},
+	{
+		"name": "Volleyball",
+		"type": "FLOAT",
+		"description": "Percentage of people who play volleyball"
+	},
+	{
+		"name": "Basketball",
+		"type": "FLOAT",
+		"description": "Percentage of people who play basketball"
+	},
+	{
+		"name": "Soccer_including_futsal",
+		"type": "FLOAT",
+		"description": "Percentage of people who play soccer (including futsal)"
+	},
+	{
+		"name": "Table_Tennis",
+		"type": "FLOAT",
+		"description": "Percentage of people who play table tennis"
+	},
+	{
+		"name": "Tennis",
+		"type": "FLOAT",
+		"description": "Percentage of people who play tennis"
+	},
+	{
+		"name": "Badminton",
+		"type": "FLOAT",
+		"description": "Percentage of people who play badminton"
+	},
+	{
+		"name": "Golf_including_driving_range",
+		"type": "FLOAT",
+		"description": "Percentage of people who play golf (including at driving ranges)"
+	},
+	{
+		"name": "Ground_Golf",
+		"type": "FLOAT",
+		"description": "Percentage of people who play Ground Golf"
+	},
+	{
+		"name": "Judo",
+		"type": "FLOAT",
+		"description": "Percentage of people who practice Judo"
+	},
+	{
+		"name": "Kendo",
+		"type": "FLOAT",
+		"description": "Percentage of people who practice Kendo"
+	},
+	{
+		"name": "Bowling",
+		"type": "FLOAT",
+		"description": "Percentage of people who go bowling"
+	},
+	{
+		"name": "Fishing",
+		"type": "FLOAT",
+		"description": "Percentage of people who go fishing"
+	},
+	{
+		"name": "Swimming",
+		"type": "FLOAT",
+		"description": "Percentage of people who go swimming"
+	},
+	{
+		"name": "Skiing_and_Snowboarding",
+		"type": "FLOAT",
+		"description": "Percentage of people who go skiing or snowboarding"
+	},
+	{
+		"name": "Mountain_Climbing_and_Hiking",
+		"type": "FLOAT",
+		"description": "Percentage of people who go mountain climbing or hiking"
+	},
+	{
+		"name": "Cycling",
+		"type": "FLOAT",
+		"description": "Percentage of people who go cycling"
+	},
+	{
+		"name": "Jogging_and_Marathon",
+		"type": "FLOAT",
+		"description": "Percentage of people who go jogging or run marathons"
+	},
+	{
+		"name": "Walking_and_Light_Exercise",
+		"type": "FLOAT",
+		"description": "Percentage of people who engage in walking or light exercise"
+	},
+	{
+		"name": "Yoga",
+		"type": "FLOAT",
+		"description": "Percentage of people who practice yoga"
+	},
+	{
+		"name": "Training_with_Equipment",
+		"type": "FLOAT",
+		"description": "Percentage of people who do workouts using equipment (e.g., at a gym)"
+	},
+	{
+		"name": "Other_Sports",
+		"type": "FLOAT",
+		"description": "Percentage of people who participate in other sports"
+	},
+	{
+		"name": "Total_Hobbies_and_Recreation",
+		"type": "FLOAT",
+		"description": "Total percentage of people engaged in hobbies and recreational activities"
+	},
+	{
+		"name": "Watching_Live_Sports",
+		"type": "FLOAT",
+		"description": "Watching sports live at venues (excludes watching on TV, smartphone, PC, etc.)"
+	},
+	{
+		"name": "Art_Appreciation_in_person",
+		"type": "FLOAT",
+		"description": "Appreciating art at museums or galleries (excludes viewing on TV, smartphone, PC, etc.)"
+	},
+	{
+		"name": "Attending_Performing_Arts",
+		"type": "FLOAT",
+		"description": "Attending live performances like theater, dance, etc. (excludes viewing on TV, smartphone, PC, etc.)"
+	},
+	{
+		"name": "Watching_Movies_at_Cinema",
+		"type": "FLOAT",
+		"description": "Watching movies at a movie theater"
+	},
+	{
+		"name": "Watching_Movies_other_than_cinema",
+		"type": "FLOAT",
+		"description": "Watching movies on other media like TV, DVD, PC, etc."
+	},
+	{
+		"name": "Attending_Classical_Music_Concerts",
+		"type": "FLOAT",
+		"description": "Attending classical music concerts"
+	},
+	{
+		"name": "Attending_Popular_Music_Concerts",
+		"type": "FLOAT",
+		"description": "Attending popular/J-pop music concerts"
+	},
+	{
+		"name": "Listening_to_Music_CD_smartphone_etc",
+		"type": "FLOAT",
+		"description": "Listening to music on devices like CD players, smartphones, etc."
+	},
+	{
+		"name": "Playing_Musical_Instruments",
+		"type": "FLOAT",
+		"description": "Playing musical instruments"
+	},
+	{
+		"name": "Traditional_Japanese_Music",
+		"type": "FLOAT",
+		"description": "Playing or listening to traditional Japanese music (Hogaku)"
+	},
+	{
+		"name": "Chorus_and_Vocal_Music",
+		"type": "FLOAT",
+		"description": "Participating in chorus or vocal music"
+	},
+	{
+		"name": "Karaoke",
+		"type": "FLOAT",
+		"description": "Singing karaoke"
+	},
+	{
+		"name": "Traditional_Japanese_Dance",
+		"type": "FLOAT",
+		"description": "Practicing traditional Japanese dance (Buyo)"
+	},
+	{
+		"name": "Western_and_Ballroom_Dance",
+		"type": "FLOAT",
+		"description": "Practicing Western or ballroom dance"
+	},
+	{
+		"name": "Calligraphy",
+		"type": "FLOAT",
+		"description": "Practicing calligraphy (Shodo)"
+	},
+	{
+		"name": "Flower_Arrangement",
+		"type": "FLOAT",
+		"description": "Practicing flower arrangement (Kado/Ikebana)"
+	},
+	{
+		"name": "Tea_Ceremony",
+		"type": "FLOAT",
+		"description": "Practicing the tea ceremony (Sado)"
+	},
+	{
+		"name": "Japanese_and_Western_Sewing",
+		"type": "FLOAT",
+		"description": "Engaging in Japanese or Western-style sewing"
+	},
+	{
+		"name": "Knitting_and_Handicrafts",
+		"type": "FLOAT",
+		"description": "Engaging in knitting and handicrafts"
+	},
+	{
+		"name": "Cooking_and_Baking_for_pleasure",
+		"type": "FLOAT",
+		"description": "Cooking or baking as a hobby"
+	},
+	{
+		"name": "Gardening",
+		"type": "FLOAT",
+		"description": "Engaging in horticulture or gardening"
+	},
+	{
+		"name": "DIY_Woodworking",
+		"type": "FLOAT",
+		"description": "Engaging in do-it-yourself (DIY) projects or woodworking"
+	},
+	{
+		"name": "Painting_and_Sculpture",
+		"type": "FLOAT",
+		"description": "Creating paintings or sculptures"
+	},
+	{
+		"name": "Ceramics_and_Crafts",
+		"type": "FLOAT",
+		"description": "Engaging in pottery or other crafts"
+	},
+	{
+		"name": "Photography",
+		"type": "FLOAT",
+		"description": "Taking or printing photographs as a hobby"
+	},
+	{
+		"name": "Creative_Writing",
+		"type": "FLOAT",
+		"description": "Engaging in creative writing (poetry, novels, etc.)"
+	},
+	{
+		"name": "Reading_for_pleasure_excluding_manga",
+		"type": "FLOAT",
+		"description": "Reading for pleasure (excluding manga)"
+	},
+	{
+		"name": "Reading_Manga",
+		"type": "FLOAT",
+		"description": "Reading manga"
+	},
+	{
+		"name": "Go",
+		"type": "FLOAT",
+		"description": "Playing Go"
+	},
+	{
+		"name": "Shogi",
+		"type": "FLOAT",
+		"description": "Playing Shogi (Japanese chess)"
+	},
+	{
+		"name": "Pachinko",
+		"type": "FLOAT",
+		"description": "Playing Pachinko"
+	},
+	{
+		"name": "Video_Games_smartphone_console",
+		"type": "FLOAT",
+		"description": "Playing games on smartphones, consoles, etc."
+	},
+	{
+		"name": "Visiting_Amusement_Parks_Zoos_Aquariums",
+		"type": "FLOAT",
+		"description": "Visiting amusement parks, zoos, aquariums, etc."
+	},
+	{
+		"name": "Camping",
+		"type": "FLOAT",
+		"description": "Going camping"
+	},
+	{
+		"name": "Other_Hobbies",
+		"type": "FLOAT",
+		"description": "Engaging in other hobbies and recreational activities"
+	},
+	{
+		"name": "Total_Volunteer_Activities",
+		"type": "FLOAT",
+		"description": "Total percentage of people participating in volunteer activities"
+	},
+	{
+		"name": "Health_and_Medical_Services",
+		"type": "FLOAT",
+		"description": "Volunteering in health or medical services"
+	},
+	{
+		"name": "Activities_for_the_Elderly",
+		"type": "FLOAT",
+		"description": "Volunteering for the elderly"
+	},
+	{
+		"name": "Activities_for_People_with_Disabilities",
+		"type": "FLOAT",
+		"description": "Volunteering for people with disabilities"
+	},
+	{
+		"name": "Activities_for_Children",
+		"type": "FLOAT",
+		"description": "Volunteering for children"
+	},
+	{
+		"name": "Sports_Culture_Arts_Academic_Activities",
+		"type": "FLOAT",
+		"description": "Volunteering related to sports, culture, arts, or academics"
+	},
+	{
+		"name": "Community_Development",
+		"type": "FLOAT",
+		"description": "Volunteering for community development"
+	},
+	{
+		"name": "Community_Safety",
+		"type": "FLOAT",
+		"description": "Volunteering for community safety (e.g., crime prevention)"
+	},
+	{
+		"name": "Nature_and_Environmental_Conservation",
+		"type": "FLOAT",
+		"description": "Volunteering for nature or environmental conservation"
+	},
+	{
+		"name": "Disaster_Relief",
+		"type": "FLOAT",
+		"description": "Volunteering for disaster relief"
+	},
+	{
+		"name": "International_Cooperation",
+		"type": "FLOAT",
+		"description": "Volunteering for international cooperation activities"
+	},
+	{
+		"name": "Other_Volunteer_Activities",
+		"type": "FLOAT",
+		"description": "Volunteering in other activities"
+	},
+	{
+		"name": "Total_Travel_and_Excursions",
+		"type": "FLOAT",
+		"description": "Total percentage of people who traveled or went on excursions"
+	},
+	{
+		"name": "Day_Trips",
+		"type": "FLOAT",
+		"description": "Going on day trips"
+	},
+	{
+		"name": "Overnight_Trips",
+		"type": "FLOAT",
+		"description": "Going on trips of one night or more"
+	},
+	{
+		"name": "Domestic_Travel",
+		"type": "FLOAT",
+		"description": "Traveling within the country"
+	},
+	{
+		"name": "Sightseeing_Travel",
+		"type": "FLOAT",
+		"description": "Traveling for sightseeing"
+	},
+	{
+		"name": "Homecoming_and_Visiting_Travel",
+		"type": "FLOAT",
+		"description": "Traveling to visit family or friends"
+	},
+	{
+		"name": "Overseas_Travel_Sightseeing",
+		"type": "FLOAT",
+		"description": "Traveling overseas for sightseeing"
+	},
+	{
+		"name": "Sleep",
+		"type": "INTEGER",
+		"description": "Average time spent on sleep (in minutes)"
+	},
+	{
+		"name": "Personal_Care",
+		"type": "INTEGER",
+		"description": "Average time spent on personal care (in minutes)"
+	},
+	{
+		"name": "Meals",
+		"type": "INTEGER",
+		"description": "Average time spent on meals (in minutes)"
+	},
+	{
+		"name": "Commuting_to_work_or_school",
+		"type": "INTEGER",
+		"description": "Average time spent commuting to work or school (in minutes)"
+	},
+	{
+		"name": "Work",
+		"type": "INTEGER",
+		"description": "Average time spent on work (in minutes)"
+	},
+	{
+		"name": "Academic_Study",
+		"type": "INTEGER",
+		"description": "Average time spent on academic study (in minutes)"
+	},
+	{
+		"name": "Housework",
+		"type": "INTEGER",
+		"description": "Average time spent on housework (in minutes)"
+	},
+	{
+		"name": "Caregiving_and_Nursing",
+		"type": "INTEGER",
+		"description": "Average time spent on caregiving or nursing (in minutes)"
+	},
+	{
+		"name": "Childcare",
+		"type": "INTEGER",
+		"description": "Average time spent on childcare (in minutes)"
+	},
+	{
+		"name": "Shopping",
+		"type": "INTEGER",
+		"description": "Average time spent on shopping (in minutes)"
+	},
+	{
+		"name": "Travel_excluding_commuting",
+		"type": "INTEGER",
+		"description": "Average time spent on travel (excluding commuting) (in minutes)"
+	},
+	{
+		"name": "TV_Radio_Newspapers_Magazines",
+		"type": "INTEGER",
+		"description": "Average time spent on TV, radio, newspapers, or magazines (in minutes)"
+	},
+	{
+		"name": "Rest_and_Relaxation",
+		"type": "INTEGER",
+		"description": "Average time spent on rest and relaxation (in minutes)"
+	},
+	{
+		"name": "Learning_and_Self_Development_non_academic",
+		"type": "INTEGER",
+		"description": "Average time spent on learning/self-development (non-academic) (in minutes)"
+	},
+	{
+		"name": "Hobbies_and_Recreation",
+		"type": "INTEGER",
+		"description": "Average time spent on hobbies and recreation (in minutes)"
+	},
+	{
+		"name": "Sports_Activity",
+		"type": "INTEGER",
+		"description": "Average time spent on sports (in minutes)"
+	},
+	{
+		"name": "Volunteer_and_Social_Activities",
+		"type": "INTEGER",
+		"description": "Average time spent on volunteer or social activities (in minutes)"
+	},
+	{
+		"name": "Socializing",
+		"type": "INTEGER",
+		"description": "Average time spent on socializing (in minutes)"
+	},
+	{
+		"name": "Medical_Appointments_and_Care",
+		"type": "INTEGER",
+		"description": "Average time spent on medical appointments or care (in minutes)"
+	},
+	{
+		"name": "Other_Daily_Activities",
+		"type": "INTEGER",
+		"description": "Average time spent on other daily activities (in minutes)"
+	},
+	{
+		"name": "Commuting_Time",
+		"type": "INTEGER",
+		"description": "Total commuting time (in minutes)"
+	},
+	{
+		"name": "Work_Time",
+		"type": "INTEGER",
+		"description": "Total work time (in minutes)"
+	},
+	{
+		"name": "Study_Time",
+		"type": "INTEGER",
+		"description": "Total academic study time (in minutes)"
+	},
+	{
+		"name": "Wake_up_Time",
+		"type": "TIME",
+		"description": "Average time of waking up"
+	},
+	{
+		"name": "Breakfast_Start_Time",
+		"type": "TIME",
+		"description": "Average time of starting breakfast"
+	},
+	{
+		"name": "Dinner_Start_Time",
+		"type": "TIME",
+		"description": "Average time of starting dinner"
+	},
+	{
+		"name": "Bedtime",
+		"type": "TIME",
+		"description": "Average time of going to bed"
+	},
+	{
+		"name": "Departure_Time_for_Work",
+		"type": "TIME",
+		"description": "Average time of departure for work"
+	},
+	{
+		"name": "Arrival_Time_from_Work",
+		"type": "TIME",
+		"description": "Average time of arrival home from work"
+	}
+]

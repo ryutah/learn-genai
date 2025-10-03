@@ -1,0 +1,477 @@
+[
+	{
+		"name": "Region_Code",
+		"type": "STRING",
+		"description": "Regional code for the area"
+	},
+	{
+		"name": "Prefecture",
+		"type": "STRING",
+		"description": "Prefecture name"
+	},
+	{
+		"name": "Total_Population",
+		"type": "INTEGER",
+		"description": "Total population (including foreign residents)"
+	},
+	{
+		"name": "Japanese_Population",
+		"type": "INTEGER",
+		"description": "Population of Japanese nationals"
+	},
+	{
+		"name": "Population_Under_15",
+		"type": "INTEGER",
+		"description": "Population aged under 15"
+	},
+	{
+		"name": "Population_15_to_64",
+		"type": "INTEGER",
+		"description": "Working-age population (aged 15-64)"
+	},
+	{
+		"name": "Population_65_and_Over",
+		"type": "INTEGER",
+		"description": "Senior population (aged 65 and over)"
+	},
+	{
+		"name": "Foreign_Population",
+		"type": "INTEGER",
+		"description": "Population of foreign residents"
+	},
+	{
+		"name": "Number_of_Births",
+		"type": "INTEGER",
+		"description": "Number of live births"
+	},
+	{
+		"name": "Total_Fertility_Rate",
+		"type": "FLOAT",
+		"description": "The average number of children a woman would bear in her lifetime"
+	},
+	{
+		"name": "Number_of_Deaths",
+		"type": "INTEGER",
+		"description": "Number of deaths"
+	},
+	{
+		"name": "In_Migrants_Japanese",
+		"type": "INTEGER",
+		"description": "Number of Japanese people who moved into the prefecture from other prefectures"
+	},
+	{
+		"name": "Out_Migrants_Japanese",
+		"type": "INTEGER",
+		"description": "Number of Japanese people who moved out of the prefecture"
+	},
+	{
+		"name": "Number_of_Private_Households",
+		"type": "INTEGER",
+		"description": "Number of private households"
+	},
+	{
+		"name": "Private_Household_Members",
+		"type": "INTEGER",
+		"description": "Total number of members in private households"
+	},
+	{
+		"name": "One_Person_Households",
+		"type": "INTEGER",
+		"description": "Number of one-person (single) households"
+	},
+	{
+		"name": "Number_of_Marriages",
+		"type": "INTEGER",
+		"description": "Number of marriage registrations"
+	},
+	{
+		"name": "Number_of_Divorces",
+		"type": "INTEGER",
+		"description": "Number of divorce registrations"
+	},
+	{
+		"name": "Total_Area_sq_km",
+		"type": "FLOAT",
+		"description": "Total land area in square kilometers (excludes Northern Territories and Takeshima)"
+	},
+	{
+		"name": "Habitable_Area_sq_km",
+		"type": "FLOAT",
+		"description": "Habitable land area in square kilometers"
+	},
+	{
+		"name": "Natural_Park_Area_sq_km",
+		"type": "FLOAT",
+		"description": "Area of natural parks in square kilometers"
+	},
+	{
+		"name": "Gross_Prefectural_Product_2015_base",
+		"type": "INTEGER",
+		"description": "Gross Prefectural Product in million JPY (2015 base year)"
+	},
+	{
+		"name": "Prefectural_Income_2015_base",
+		"type": "INTEGER",
+		"description": "Total prefectural income in million JPY (2015 base year)"
+	},
+	{
+		"name": "Per_Capita_Prefectural_Income_2015_base",
+		"type": "INTEGER",
+		"description": "Per capita prefectural income in thousand JPY (2015 base year)"
+	},
+	{
+		"name": "Number_of_Establishments_Private",
+		"type": "INTEGER",
+		"description": "Total number of private business establishments"
+	},
+	{
+		"name": "Establishments_Construction_Private",
+		"type": "INTEGER",
+		"description": "Number of private establishments in the construction industry"
+	},
+	{
+		"name": "Establishments_Manufacturing_Private",
+		"type": "INTEGER",
+		"description": "Number of private establishments in the manufacturing industry"
+	},
+	{
+		"name": "Establishments_Information_and_Communications_Private",
+		"type": "INTEGER",
+		"description": "Number of private establishments in the information and communications industry"
+	},
+	{
+		"name": "Establishments_Wholesale_and_Retail_Private",
+		"type": "INTEGER",
+		"description": "Number of private establishments in the wholesale and retail industry"
+	},
+	{
+		"name": "Establishments_Accommodation_and_Food_Services_Private",
+		"type": "INTEGER",
+		"description": "Number of private establishments in accommodation and food services"
+	},
+	{
+		"name": "Establishments_Living_related_and_Amusement_Services_Private",
+		"type": "INTEGER",
+		"description": "Number of private establishments in living-related and amusement services"
+	},
+	{
+		"name": "Establishments_Medical_and_Welfare_Private",
+		"type": "INTEGER",
+		"description": "Number of private establishments in the medical and welfare industry"
+	},
+	{
+		"name": "Number_of_Employees_Private",
+		"type": "INTEGER",
+		"description": "Total number of employees in private establishments"
+	},
+	{
+		"name": "Employees_Construction_Private",
+		"type": "INTEGER",
+		"description": "Number of employees in the private construction industry"
+	},
+	{
+		"name": "Employees_Manufacturing_Private",
+		"type": "INTEGER",
+		"description": "Number of employees in the private manufacturing industry"
+	},
+	{
+		"name": "Employees_Information_and_Communications_Private",
+		"type": "INTEGER",
+		"description": "Number of employees in the private information and communications industry"
+	},
+	{
+		"name": "Employees_Wholesale_and_Retail_Private",
+		"type": "INTEGER",
+		"description": "Number of employees in the private wholesale and retail industry"
+	},
+	{
+		"name": "Employees_Accommodation_and_Food_Services_Private",
+		"type": "INTEGER",
+		"description": "Number of employees in private accommodation and food services"
+	},
+	{
+		"name": "Employees_Living_related_and_Amusement_Services_Private",
+		"type": "INTEGER",
+		"description": "Number of employees in private living-related and amusement services"
+	},
+	{
+		"name": "Employees_Medical_and_Welfare_Private",
+		"type": "INTEGER",
+		"description": "Number of employees in the private medical and welfare industry"
+	},
+	{
+		"name": "Commercial_Farm_Households",
+		"type": "INTEGER",
+		"description": "Number of commercial farm households"
+	},
+	{
+		"name": "Non_commercial_Farm_Households",
+		"type": "INTEGER",
+		"description": "Number of non-commercial (self-sufficient) farm households"
+	},
+	{
+		"name": "Cultivated_Land_Area",
+		"type": "FLOAT",
+		"description": "Area of cultivated land in hectares"
+	},
+	{
+		"name": "Number_of_Hotels_and_Ryokans",
+		"type": "INTEGER",
+		"description": "Number of hotels and Japanese-style inns (ryokan)"
+	},
+	{
+		"name": "Number_of_Guest_Rooms",
+		"type": "INTEGER",
+		"description": "Total number of guest rooms in hotels and ryokans"
+	},
+	{
+		"name": "Number_of_Kindergartens",
+		"type": "INTEGER",
+		"description": "Number of kindergartens"
+	},
+	{
+		"name": "Kindergarten_Enrollment",
+		"type": "INTEGER",
+		"description": "Number of children enrolled in kindergartens"
+	},
+	{
+		"name": "Number_of_Elementary_Schools",
+		"type": "INTEGER",
+		"description": "Number of elementary schools"
+	},
+	{
+		"name": "Elementary_School_Pupils",
+		"type": "INTEGER",
+		"description": "Number of pupils in elementary schools"
+	},
+	{
+		"name": "Number_of_Junior_High_Schools",
+		"type": "INTEGER",
+		"description": "Number of junior high schools"
+	},
+	{
+		"name": "Junior_High_School_Students",
+		"type": "INTEGER",
+		"description": "Number of students in junior high schools"
+	},
+	{
+		"name": "Number_of_Compulsory_Education_Schools",
+		"type": "INTEGER",
+		"description": "Number of combined elementary and junior high schools"
+	},
+	{
+		"name": "Students_in_Early_Grades_Compulsory_Ed",
+		"type": "INTEGER",
+		"description": "Number of students in the early grades (1-6) of compulsory education schools"
+	},
+	{
+		"name": "Students_in_Later_Grades_Compulsory_Ed",
+		"type": "INTEGER",
+		"description": "Number of students in the later grades (7-9) of compulsory education schools"
+	},
+	{
+		"name": "Number_of_Senior_High_Schools",
+		"type": "INTEGER",
+		"description": "Number of senior high schools"
+	},
+	{
+		"name": "Senior_High_School_Students",
+		"type": "INTEGER",
+		"description": "Number of students in senior high schools"
+	},
+	{
+		"name": "Number_of_Junior_Colleges",
+		"type": "INTEGER",
+		"description": "Number of junior colleges"
+	},
+	{
+		"name": "Number_of_Universities",
+		"type": "INTEGER",
+		"description": "Number of universities"
+	},
+	{
+		"name": "Junior_College_Students",
+		"type": "INTEGER",
+		"description": "Number of students in junior colleges"
+	},
+	{
+		"name": "University_Students",
+		"type": "INTEGER",
+		"description": "Number of students in universities"
+	},
+	{
+		"name": "Number_of_Community_Centers",
+		"type": "INTEGER",
+		"description": "Number of community centers (Kominkan)"
+	},
+	{
+		"name": "Number_of_Libraries",
+		"type": "INTEGER",
+		"description": "Number of public libraries"
+	},
+	{
+		"name": "Number_of_Museums",
+		"type": "INTEGER",
+		"description": "Number of museums"
+	},
+	{
+		"name": "Number_of_Theaters_and_Concert_Halls",
+		"type": "INTEGER",
+		"description": "Number of theaters and concert halls"
+	},
+	{
+		"name": "Public_Sports_Facilities",
+		"type": "INTEGER",
+		"description": "Number of public sports facilities"
+	},
+	{
+		"name": "Private_Sports_Facilities",
+		"type": "INTEGER",
+		"description": "Number of private sports facilities"
+	},
+	{
+		"name": "Number_of_Cinemas",
+		"type": "INTEGER",
+		"description": "Number of movie theaters"
+	},
+	{
+		"name": "Number_of_Passports_Issued",
+		"type": "INTEGER",
+		"description": "Number of ordinary passports issued"
+	},
+	{
+		"name": "Total_Overnight_Guests",
+		"type": "INTEGER",
+		"description": "Total number of overnight guests (person-nights)"
+	},
+	{
+		"name": "Total_Foreign_Overnight_Guests",
+		"type": "INTEGER",
+		"description": "Total number of foreign overnight guests (person-nights)"
+	},
+	{
+		"name": "Total_Dwellings",
+		"type": "INTEGER",
+		"description": "Total number of dwellings"
+	},
+	{
+		"name": "Vacant_Dwellings",
+		"type": "INTEGER",
+		"description": "Number of vacant dwellings"
+	},
+	{
+		"name": "Owned_Dwellings",
+		"type": "INTEGER",
+		"description": "Number of owner-occupied dwellings"
+	},
+	{
+		"name": "Detached_Houses",
+		"type": "INTEGER",
+		"description": "Number of detached houses"
+	},
+	{
+		"name": "Floor_Area_per_Dwelling_sq_m",
+		"type": "FLOAT",
+		"description": "Average total floor area per dwelling in square meters"
+	},
+	{
+		"name": "Total_Population_Sewage",
+		"type": "INTEGER",
+		"description": "Total population covered by sewage systems"
+	},
+	{
+		"name": "Population_without_Flush_Toilets",
+		"type": "INTEGER",
+		"description": "Population living in households without access to flush toilets"
+	},
+	{
+		"name": "Total_Waste_Discharge_t",
+		"type": "INTEGER",
+		"description": "Total amount of waste discharged in tonnes"
+	},
+	{
+		"name": "Waste_Discharge_per_Person_per_Day_g",
+		"type": "INTEGER",
+		"description": "Amount of waste discharged per person per day in grams"
+	},
+	{
+		"name": "Recycling_Rate_pct",
+		"type": "FLOAT",
+		"description": "Waste recycling rate in percent"
+	},
+	{
+		"name": "Number_of_Retail_Stores",
+		"type": "INTEGER",
+		"description": "Number of retail stores"
+	},
+	{
+		"name": "Number_of_Restaurants",
+		"type": "INTEGER",
+		"description": "Number of restaurants and other eating/drinking places"
+	},
+	{
+		"name": "Number_of_Large_Scale_Retail_Stores",
+		"type": "INTEGER",
+		"description": "Number of large-scale retail stores"
+	},
+	{
+		"name": "Number_of_General_Hospitals",
+		"type": "INTEGER",
+		"description": "Number of general hospitals"
+	},
+	{
+		"name": "Number_of_General_Clinics",
+		"type": "INTEGER",
+		"description": "Number of general clinics"
+	},
+	{
+		"name": "Number_of_Dental_Clinics",
+		"type": "INTEGER",
+		"description": "Number of dental clinics"
+	},
+	{
+		"name": "Number_of_Physicians",
+		"type": "INTEGER",
+		"description": "Number of physicians (doctors)"
+	},
+	{
+		"name": "Number_of_Dentists",
+		"type": "INTEGER",
+		"description": "Number of dentists"
+	},
+	{
+		"name": "Number_of_Pharmacists",
+		"type": "INTEGER",
+		"description": "Number of pharmacists"
+	},
+	{
+		"name": "Number_of_Daycare_Centers",
+		"type": "INTEGER",
+		"description": "Number of daycare centers (Hoikusho, etc.)"
+	},
+	{
+		"name": "Children_in_Daycare",
+		"type": "INTEGER",
+		"description": "Number of children enrolled in daycare centers"
+	},
+	{
+		"name": "Consumer_Expenditure_Two_or_more_person_households",
+		"type": "INTEGER",
+		"description": "Average monthly consumer expenditure for households with two or more persons (JPY)"
+	},
+	{
+		"name": "Food_Expenses_Two_or_more_person_households",
+		"type": "INTEGER",
+		"description": "Average monthly food expenses for households with two or more persons (JPY)"
+	},
+	{
+		"name": "Housing_Expenses_Two_or_more_person_households",
+		"type": "INTEGER",
+		"description": "Average monthly housing expenses for households with two or more persons (JPY)"
+	},
+	{
+		"name": "Culture_and_Recreation_Expenses_Two_or_more_person_households",
+		"type": "INTEGER",
+		"description": "Average monthly culture and recreation expenses for households with two or more persons (JPY)"
+	}
+]

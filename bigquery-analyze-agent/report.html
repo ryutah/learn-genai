@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Cloud 2025年 動向レポート（スライド版）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", "Noto Sans JP", sans-serif;
+        background-color: #f0f2f5;
+      }
+      .slide {
+        background-color: #ffffff;
+        width: 1123px;
+        height: 794px;
+        margin: 2rem auto;
+        padding: 4rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #e2e8f0;
+      }
+      .slide-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+        border-bottom: 4px solid #4a90e2;
+        padding-bottom: 1rem;
+      }
+      .slide-subtitle {
+        font-size: 1.5rem;
+        color: #475569;
+      }
+      .content-grid {
+        display: grid;
+        gap: 2rem;
+        flex-grow: 1;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .print-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #4a90e2;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        z-index: 100;
+      }
+
+      @media print {
+        body {
+          background-color: #ffffff;
+        }
+        .slide {
+          width: 100%;
+          height: 100vh;
+          margin: 0;
+          box-shadow: none;
+          border: none;
+          page-break-after: always;
+          padding: 2rem;
+        }
+        .slide:last-child {
+          page-break-after: auto;
+        }
+        .print-button {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="window.print()" class="print-button">PDFとして印刷</button>
+
+    <div class="slide-container">
+      <!-- スライド 1: 表紙 -->
+      <section class="slide justify-center text-center">
+        <div class="m-auto">
+          <p class="text-2xl text-gray-500 mb-4">顧客向け説明資料</p>
+          <h1 class="text-6xl font-bold text-gray-800 leading-tight">
+            Google Cloud 2025年 動向レポート
+          </h1>
+          <p class="text-3xl text-gray-600 mt-8">
+            AIが拓く、クラウドコンピューティングの新たな地平
+          </p>
+          <p class="text-lg text-gray-400 mt-24">2025年10月</p>
+        </div>
+      </section>
+
+      <!-- スライド 2: サマリー -->
+      <section class="slide">
+        <h2 class="slide-title">エグゼクティブサマリー</h2>
+        <p class="slide-subtitle mb-8">
+          2025年、Google
+          CloudはAIを中核に据え、5つの主要領域で大きな進化を遂げます。
+        </p>
+        <div class="flex-grow flex items-center">
+          <ul class="space-y-6 text-2xl text-gray-700 w-full">
+            <li class="flex items-start p-4 bg-gray-50 rounded-lg">
+              <span class="text-3xl mr-4">1️⃣</span>
+              <div>
+                <strong class="text-blue-700"
+                  >AIトランスフォーメーション：</strong
+                >
+                <span
+                  >Gemini
+                  2.5を始めとするマルチモーダルAIと、自律的にタスクをこなす「AIエージェント」がビジネスを革新します。</span
+                >
+              </div>
+            </li>
+            <li class="flex items-start p-4 bg-gray-50 rounded-lg">
+              <span class="text-3xl mr-4">2️⃣</span>
+              <div>
+                <strong class="text-blue-700">次世代インフラ：</strong>
+                <span
+                  >推論処理に特化した新型TPU「Ironwood」が登場し、AIワークロードの効率を飛躍的に向上させます。</span
+                >
+              </div>
+            </li>
+            <li class="flex items-start p-4 bg-gray-50 rounded-lg">
+              <span class="text-3xl mr-4">3️⃣</span>
+              <div>
+                <strong class="text-blue-700">データと分析の進化：</strong>
+                <span
+                  >「会話型BI」から、AIが自律的にインサイトを導き出す「エージェント型プラットフォーム」へと進化します。</span
+                >
+              </div>
+            </li>
+            <li class="flex items-start p-4 bg-gray-50 rounded-lg">
+              <span class="text-3xl mr-4">4️⃣</span>
+              <div>
+                <strong class="text-blue-700">AI時代のセキュリティ：</strong>
+                <span
+                  >AIを活用して防御を固める「Agentic
+                  SOC」構想により、脅威検知と対応を高度に自動化します。</span
+                >
+              </div>
+            </li>
+            <li class="flex items-start p-4 bg-gray-50 rounded-lg">
+              <span class="text-3xl mr-4">5️⃣</span>
+              <div>
+                <strong class="text-blue-700">開発者体験の革新：</strong>
+                <span
+                  >開発者の90%がAIを利用。プロトタイプ自動生成など、AIが開発プロセスを根本から変えます。</span
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- スライド 3: AIトランスフォーメーション -->
+      <section class="slide">
+        <h2 class="slide-title">1. AIトランスフォーメーション</h2>
+        <p class="slide-subtitle mb-8">
+          自律的にタスクを遂行する「AIエージェント」が主役の時代へ
+        </p>
+        <div class="content-grid grid-cols-3">
+          <div class="col-span-1 p-6 bg-blue-50 rounded-xl">
+            <h3 class="text-2xl font-bold mb-4 text-blue-800">キーポイント</h3>
+            <ul class="list-disc list-inside space-y-3 text-lg">
+              <li>Gemini 2.5による高度な推論能力</li>
+              <li>画像、動画、音楽を生成するマルチモーダルAIの進化</li>
+              <li>複数のAIやツールを連携させる「AIエージェント」の登場</li>
+              <li>「Agentspace」によるエージェント開発・管理の簡素化</li>
+            </ul>
+          </div>
+          <div class="col-span-2 grid grid-cols-2 grid-rows-3 gap-4">
+            <div class="p-4 bg-gray-100 rounded-lg flex items-center">
+              <span class="text-3xl mr-3">💬</span
+              ><strong>Gemini 2.5:</strong> 複雑な推論と分析
+            </div>
+            <div class="p-4 bg-gray-100 rounded-lg flex items-center">
+              <span class="text-3xl mr-3">🎨</span
+              ><strong>Imagen 3:</strong> 高品質な画像生成・修復
+            </div>
+            <div class="p-4 bg-gray-100 rounded-lg flex items-center">
+              <span class="text-3xl mr-3">🎬</span
+              ><strong>Veo 2:</strong> 精密な動画生成・編集
+            </div>
+            <div class="p-4 bg-gray-100 rounded-lg flex items-center">
+              <span class="text-3xl mr-3">🎵</span
+              ><strong>Lyria:</strong> テキストから音楽を生成
+            </div>
+            <div class="p-4 bg-gray-100 rounded-lg flex items-center">
+              <span class="text-3xl mr-3">🔊</span
+              ><strong>Chirp 3:</strong> 10秒でカスタムボイス生成
+            </div>
+            <div class="p-4 bg-gray-100 rounded-lg flex items-center">
+              <span class="text-3xl mr-3">🤖</span
+              ><strong>AI Agents:</strong> 自律的なタスク遂行
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- スライド 4: 次世代インフラ -->
+      <section class="slide">
+        <h2 class="slide-title">2. AIを支える次世代インフラ</h2>
+        <p class="slide-subtitle mb-8">
+          第7世代TPU「Ironwood」がAIの推論処理を加速
+        </p>
+        <div class="content-grid grid-cols-2 items-center">
+          <div class="p-6 bg-green-50 rounded-xl">
+            <h3 class="text-2xl font-bold mb-4 text-green-800">キーポイント</h3>
+            <ul class="list-disc list-inside space-y-3 text-lg">
+              <li>
+                AIの「推論」ワークロードに特化して設計された第7世代TPU「Ironwood」が登場。
+              </li>
+              <li>
+                前世代と比較して、AIモデルの応答速度や処理効率が大幅に向上。
+              </li>
+              <li>
+                AI
+                Hypercomputerアーキテクチャにより、ハードウェアとソフトウェアが統合され、AI開発をエンドツーエンドで最適化。
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-center font-semibold text-gray-700 text-xl mb-4">
+              TPU世代別 推論パフォーマンス比較
+            </p>
+            <div class="chart-container h-[400px]">
+              <canvas id="tpuChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- スライド 5: データと分析の進化 -->
+      <section class="slide">
+        <h2 class="slide-title">3. データと分析の進化</h2>
+        <p class="slide-subtitle mb-8">
+          AIエージェントが自律的にインサイトを導き出す時代へ
+        </p>
+        <div class="flex-grow flex flex-col justify-around">
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-gray-700">
+              BIプラットフォームの変遷
+            </h3>
+          </div>
+          <div class="flex justify-between items-center text-center px-8">
+            <div class="w-1/3 p-4 border border-gray-200 rounded-xl shadow-sm">
+              <h4 class="text-xl font-semibold text-blue-700 mb-2">
+                伝統的BI (従来)
+              </h4>
+              <p>専門家が構築したダッシュボードを閲覧・操作</p>
+            </div>
+            <div class="text-4xl font-bold text-gray-400 mx-4">&rarr;</div>
+            <div
+              class="w-1/3 p-4 border-2 border-green-400 rounded-xl shadow-md bg-green-50"
+            >
+              <h4 class="text-xl font-semibold text-green-700 mb-2">
+                会話型BI (現在)
+              </h4>
+              <p>自然言語でAIに質問し、対話的にインサイトを発見</p>
+            </div>
+            <div class="text-4xl font-bold text-gray-400 mx-4">&rarr;</div>
+            <div class="w-1/3 p-4 border border-gray-200 rounded-xl shadow-sm">
+              <h4 class="text-xl font-semibold text-purple-700 mb-2">
+                エージェント型 (未来)
+              </h4>
+              <p>AIが自律的にデータを分析し、ビジネス課題に対する示唆を報告</p>
+            </div>
+          </div>
+          <div class="p-6 bg-yellow-50 rounded-xl text-yellow-800">
+            <h4 class="font-bold text-lg">未来の姿：</h4>
+            <p class="text-lg">
+              BigQuery上で稼働するAIエージェントが、「なぜ今月の売上は急増したのか？」という問いに対し、広告データ、顧客行動、市場トレンドなどを横断的に分析し、その要因を自動で特定・報告します。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- スライド 6: AI時代のセキュリティ -->
+      <section class="slide">
+        <h2 class="slide-title">4. AI時代のセキュリティ</h2>
+        <p class="slide-subtitle mb-8">
+          AIが防御の中核を担う「Agentic SOC」構想
+        </p>
+        <div class="content-grid grid-cols-2 items-center">
+          <div class="h-full">
+            <p class="text-center font-semibold text-gray-700 text-xl mb-4">
+              セキュリティ戦略の重点領域
+            </p>
+            <div class="chart-container h-[450px]">
+              <canvas id="securityChart"></canvas>
+            </div>
+          </div>
+          <div class="p-6 bg-red-50 rounded-xl space-y-4">
+            <div>
+              <h3 class="text-xl font-bold text-red-800">Agentic SOC</h3>
+              <p class="text-md">
+                AIエージェントが脅威のトリアージ、調査、対応を自動化。人間のアナリストは高度な分析に専念。
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-red-800">
+                AIエージェントのセキュリティ
+              </h3>
+              <p class="text-md">
+                プロンプトインジェクションやデータ漏洩など、AI特有の脅威からエージェント自身をリアルタイムで防御。
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-red-800">統合セキュリティ</h3>
+              <p class="text-md">
+                Security Command
+                Centerでコンプライアンス、データセキュリティ、リスクレポートを統合管理し、全体を可視化。
+              </p>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-red-800">
+                IDとアクセス管理 (IAM)
+              </h3>
+              <p class="text-md">
+                Geminiが最小権限のロールを自動推奨。機密操作には再認証を要求し、不正アクセスを防止。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- スライド 7: 開発者体験の革新 -->
+      <section class="slide">
+        <h2 class="slide-title">5. 開発者体験の革新</h2>
+        <p class="slide-subtitle mb-8">
+          DORAレポートが示すAIのインパクトと開発文化の重要性
+        </p>
+        <div class="content-grid grid-cols-2 items-center">
+          <div>
+            <p class="text-center font-semibold text-gray-700 text-xl mb-4">
+              DORAレポートに見るAIのインパクト
+            </p>
+            <div class="chart-container h-[400px]">
+              <canvas id="devImpactChart"></canvas>
+            </div>
+          </div>
+          <div class="p-6 bg-indigo-50 rounded-xl space-y-6">
+            <div>
+              <h3 class="text-2xl font-bold mb-2 text-indigo-800">
+                信頼のパラドックス
+              </h3>
+              <p class="text-lg">
+                多くの開発者がAIの生産性向上効果を認めつつも、その出力結果を全面的には信頼していません。AIは人間の判断を補助する強力な「副操縦士」として活用されています。
+              </p>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-2 text-indigo-800">
+                文化を映す鏡
+              </h3>
+              <p class="text-lg">
+                AIは組織文化を増幅させます。結束力の高いチームでは効率をさらに高める一方、分断された組織ではその弱点を浮き彫りにします。AI導入の成功は、技術だけでなく文化に依存します。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- スライド 8: まとめ -->
+      <section class="slide justify-center text-center">
+        <div class="m-auto">
+          <h2 class="text-5xl font-bold text-gray-800">
+            まとめ：2025年のGoogle Cloud
+          </h2>
+          <p class="text-2xl text-gray-600 mt-8 max-w-4xl mx-auto">
+            AIはもはや単なるツールではなく、ビジネスのあらゆる側面を再定義するOSのような存在になります。<br />Google
+            Cloudは、その中核となるAIエージェント、それを支えるインフラ、データ活用、セキュリティ、開発環境の全てを提供し、お客様のビジネス変革を強力に支援します。
+          </p>
+          <p class="text-3xl text-blue-600 font-bold mt-16">
+            未来のクラウド活用を、共に。
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const commonOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+        };
+
+        const tpuCtx = document.getElementById("tpuChart").getContext("2d");
+        new Chart(tpuCtx, {
+          type: "bar",
+          data: {
+            labels: ["TPU v5e", "TPU v5p", "Ironwood (TPU v7)"],
+            datasets: [
+              {
+                label: "推論パフォーマンス (相対値)",
+                data: [100, 280, 520],
+                backgroundColor: ["#AEC6CF", "#77DD77", "#4A90E2"],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            ...commonOptions,
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: { display: true, text: "パフォーマンス (TPU v5e=100)" },
+              },
+            },
+          },
+        });
+
+        const securityCtx = document
+          .getElementById("securityChart")
+          .getContext("2d");
+        new Chart(securityCtx, {
+          type: "doughnut",
+          data: {
+            labels: [
+              "Agentic SOC",
+              "AI Agent Security",
+              "Unified Security",
+              "Identity & Access",
+            ],
+            datasets: [
+              {
+                label: "セキュリティ重点領域",
+                data: [30, 25, 25, 20],
+                backgroundColor: ["#4A90E2", "#50E3C2", "#F5A623", "#BD10E0"],
+                hoverOffset: 4,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { size: 14 },
+                },
+              },
+            },
+          },
+        });
+
+        const devImpactCtx = document
+          .getElementById("devImpactChart")
+          .getContext("2d");
+        new Chart(devImpactCtx, {
+          type: "bar",
+          data: {
+            labels: [
+              "AIツール導入率",
+              "コード品質向上を実感",
+              "生産性向上を実感",
+            ],
+            datasets: [
+              {
+                label: "%",
+                data: [90, 59, 65],
+                backgroundColor: ["#4A90E2", "#77DD77", "#AEC6CF"],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            ...commonOptions,
+            indexAxis: "y",
+            scales: {
+              x: {
+                beginAtZero: true,
+                max: 100,
+                title: { display: true, text: "%" },
+              },
+            },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
+

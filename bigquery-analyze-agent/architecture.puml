@@ -1,0 +1,21 @@
+@startuml C4_BigQuery_Agent_Architecture
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Container diagram for BigQuery Analyze Agent
+
+Person(user, "User/Data Analyst", "BigQueryのデータを分析したい人")
+
+System_Ext(gemini, "Google Gemini Pro", "LLM for reasoning and response generation")
+System_Ext(bigquery, "Google BigQuery", "Data warehouse containing the target dataset")
+
+System_Boundary(agent_system, "BigQuery Analyze Agent") {
+    Container(agent_core, "Agent Core", "Python (Google ADK)", "自然言語を解釈し、ツール呼び出しや応答生成を判断するオーケストレーター")
+    Container(bq_tools, "BigQuery Tools", "Python", "BigQueryとの実際のやり取り（スキーマ取得、クエリ実行）を行う関数群")
+}
+
+Rel(user, agent_core, "Analyzes data via natural language queries", "HTTPS")
+Rel(agent_core, gemini, "Uses for reasoning and generation", "HTTPS/API Call")
+Rel(agent_core, bq_tools, "Uses", "Function Call")
+Rel(bq_tools, bigquery, "Connects to", "gRPC/API Call")
+
+@enduml
