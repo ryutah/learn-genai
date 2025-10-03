@@ -96,6 +96,21 @@ Rel(bq_tools, bigquery, "Connects to", "gRPC/API Call")
     > [!NOTE]
     > `<gcp-project-id>` は、ご自身の GCP プロジェクト ID に置き換えてください。
 
+1.  **サンプルデータのロード:**
+
+    BigQuery にサンプルデータをロードします。
+
+    > [!WARNING]
+    > 事前に、ファイルをアップロードするための一時的な GCS バケットを作成してください。
+
+    ```bash
+    cd ../sample-datas
+    ./load.sh <gcp-project-id> <gcs-bucket-name>
+    ```
+
+    > [!NOTE]
+    > `<gcp-project-id>` と `<gcs-bucket-name>` は、ご自身の GCP プロジェクト ID と作成した GCS バケット名に置き換えてください。
+
 ## 使い方
 
 エージェントを実行するには、以下のコマンドを実行します。

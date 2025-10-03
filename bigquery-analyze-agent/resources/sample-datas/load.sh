@@ -2,8 +2,8 @@
 
 set -eux
 
-BUCKET_NAME="sandbox-harar-tmp"
-PROJECT_ID="sandbox-harar"
+PROJECT_ID=$1
+BUCKET_NAME=$2
 BIGQUERY_DATASET_ID="jp_statistics"
 
 # activity_survey.csv をアップロード
