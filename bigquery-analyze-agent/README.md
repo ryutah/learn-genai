@@ -116,7 +116,7 @@ Rel(bq_tools, bigquery, "Connects to", "gRPC/API Call")
 エージェントを実行するには、以下のコマンドを実行します。
 
 ```bash
-uv run adk web
+cd agents && uv run adk web
 ```
 
 ## ディレクトリ構成
