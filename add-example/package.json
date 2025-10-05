@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"preflight": "biome check && vitest --run",
+		"preflight": "biome check && vitest run --coverage",
 		"dev": "next dev --turbopack",
 		"build": "next build --turbopack",
 		"start": "next start",
@@ -29,6 +29,7 @@
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"@vitejs/plugin-react": "^5.0.4",
+		"@vitest/coverage-istanbul": "3.2.4",
 		"jsdom": "^27.0.0",
 		"typescript": "^5",
 		"vite-tsconfig-paths": "^5.1.4",
