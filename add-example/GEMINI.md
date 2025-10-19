@@ -81,6 +81,7 @@
 │   ├── __test__
 │   ├── app # Next.js App Router
 │   ├── types # 共通型定義
+│   ├── repositories # DB やストレージ、 SaaS などに接続しデータの取得や永続化を行う
 │   └── utils # 共通関数
 └── tests  # E2E テスト
 ```
@@ -133,3 +134,10 @@ rdra に関する定義は以下のように配置する。
    ├── ENT_information_model.puml
    └── traceability_buc_01.puml  # トレーサビリティ・ダイアグラム
 ```
+
+## 10. 実装手順
+
+1. TDD 開発に基づいてユニットテストを先に実装すると
+   - テストの実行は `pnpm preflight` で実行する
+2. ユニットテストが成功するまでリファクタリングを繰り返す
+3. `pnpm preflight` が成功するまで繰り返す
