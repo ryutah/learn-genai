@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { getSampleData } from "@/app/examples/service";
+import { getPosts } from "@/app/examples/service";
 
 const dummyData = [
 	{ userId: 1, id: 1, title: "Post 1", body: "Body 1" },
@@ -19,7 +19,7 @@ describe("getSampleData", () => {
 			}),
 		}));
 
-		const data = await getSampleData();
+		const data = await getPosts();
 		expect(data).toBeDefined();
 		expect(data.status).toBe(200);
 		expect(data.hasError).toBe(false);
