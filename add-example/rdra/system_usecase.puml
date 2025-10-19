@@ -1,0 +1,19 @@
+@startuml
+title システムユースケースモデル
+
+left to right direction
+actor 利用者
+
+rectangle "Todoアプリ" {
+  usecase (タスクを登録する) as SUC_01
+  usecase (タスクを更新する) as SUC_02
+  usecase (タスクを完了する) as SUC_03
+  usecase (タスク一覧を表示する) as SUC_04
+}
+
+利用者 -- SUC_01
+利用者 -- SUC_02
+利用者 -- SUC_03
+利用者 -- SUC_04
+
+@enduml

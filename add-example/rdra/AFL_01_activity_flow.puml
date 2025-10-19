@@ -1,0 +1,25 @@
+@startuml
+title "AFL_01: タスク登録・管理フロー (BUC_01)"
+actor 利用者
+participant "Todoアプリ" as System
+
+group "ACT_01: タスクの登録"
+    利用者 -> System: タスクの新規登録を指示
+    System --> 利用者: タスク登録画面を表示 (SCR_02)
+    利用者 -> System: タイトル等を入力し登録 (SUC_01)
+    System --> 利用者: タスク一覧へ反映 (SCR_01)
+end
+
+group "ACT_02: タスクの確認と更新"
+    利用者 -> System: タスク一覧で内容を確認
+    利用者 -> System: 特定タスクの編集を指示
+    System --> 利用者: タスク編集画面を表示 (SCR_03)
+    利用者 -> System: 内容を更新 (SUC_02)
+    System --> 利用者: タスク一覧へ反映 (SCR_01)
+end
+
+group "ACT_03: タスクの完了"
+    利用者 -> System: タスクの完了をチェック (SUC_03)
+    System --> 利用者: タスクを完了状態に変更 (SCR_01)
+end
+@enduml
