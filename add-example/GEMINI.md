@@ -117,3 +117,19 @@
 
 - Playwright を使用すること
 - `tests` フォルダに E2E テストコードを配置すること
+
+## 9. 要件定義資料のディレクトリ構成
+
+@./docs/about_rdra.md に準拠して要件定義を行う
+
+rdra に関する定義は以下のように配置する。
+
+```txt
+.
+└── rdra/
+   ├── BUC_01_business_usecase.puml
+   ├── AFL_01_activity_flow.puml
+   ├── SUC_system_usecase.puml
+   ├── ENT_information_model.puml
+   └── traceability_buc_01.puml  # トレーサビリティ・ダイアグラム
+```
