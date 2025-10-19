@@ -1,12 +1,16 @@
-import type { Metadata } from "next";
-import generateMetadata from "@/utils/metadata";
-import Example from "./Example";
-import { getSampleData } from "./service";
+"use client";
 
-export const metadata: Metadata = generateMetadata("Example");
+import { useEffect, useState } from "react";
+import type { Post } from "@/types/post";
+import { Example } from "./Example";
+import { getPosts } from "./service";
 
-export default async function Page() {
-	const posts = await getSampleData();
+export default function ExamplePage() {
+	const [posts, setPosts] = useState<Post[]>([]);
 
-	return <Example response={posts} />;
+	useEffect(() => {
+		getPosts().then(setPosts);
+	}, []);
+
+	return <Example posts={posts} />;
 }

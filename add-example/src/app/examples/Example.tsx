@@ -1,22 +1,19 @@
-import { Box, List, ListItem, Typography } from "@mui/material";
 import type { Post } from "@/types/post";
-import type { FetchResponse } from "@/utils/request";
 
-export default function Example({
-	response,
-}: {
-	response: FetchResponse<Post[]>;
-}) {
+/**
+ * Example Presentational Component
+ * @param posts - list of posts
+ */
+export function Example({ posts }: { posts: Post[] }) {
 	return (
-		<Box>
-			<Typography variant="h2">Example</Typography>
-			<List>
-				{response.data?.map((post) => (
-					<ListItem key={post.id} id={`${post.id}`}>
-						{post.title}
-					</ListItem>
+		<div>
+			<h1>Example</h1>
+			<p>This is an example page.</p>
+			<ul>
+				{posts.map((post) => (
+					<li key={post.id}>{post.title}</li>
 				))}
-			</List>
-		</Box>
+			</ul>
+		</div>
 	);
 }
