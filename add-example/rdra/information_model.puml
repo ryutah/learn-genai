@@ -1,0 +1,12 @@
+@startuml
+title 情報モデル
+
+entity "タスク (ENT_01)" {
+  * タスクID (一意)
+  --
+  * タイトル
+  * 詳細
+  * 期限日
+}
+
+@enduml

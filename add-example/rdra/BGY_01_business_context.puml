@@ -1,0 +1,11 @@
+@startuml
+title ビジネスコンテキスト図
+
+left to right direction
+actor 利用者 as User
+node "Todoアプリ" as App {
+  usecase "個人のタスク管理" as BGY_01
+}
+User -- (BGY_01)
+
+@enduml

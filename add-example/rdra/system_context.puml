@@ -1,0 +1,9 @@
+@startuml
+title システムコンテキスト図
+
+actor 利用者 as User
+rectangle "Todoアプリ" as System
+
+User -- System
+
+@enduml

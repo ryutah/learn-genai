@@ -1,0 +1,11 @@
+@startuml
+title ビジネスユースケースモデル (BGY_01: 個人のタスク管理)
+
+left to right direction
+actor 利用者
+rectangle "BGY_01: 個人のタスク管理" {
+  usecase "日々のタスクを登録し、\n抜け漏れなく管理する" as BUC_01
+}
+利用者 -- BUC_01
+
+@enduml
