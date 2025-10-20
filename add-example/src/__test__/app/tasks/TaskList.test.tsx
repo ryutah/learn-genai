@@ -32,8 +32,8 @@ describe("TaskList Component", () => {
 		render(
 			<TaskList
 				tasks={mockTasks}
-				onToggleStatusAction={async () => { }}
-				onDeleteAction={async () => { }}
+				onToggleStatusAction={async () => {}}
+				onDeleteAction={async () => {}}
 			/>,
 		);
 
@@ -48,12 +48,12 @@ describe("TaskList Component", () => {
 	});
 
 	it("チェックボックスをクリックしたときに onToggleStatus が呼び出される", () => {
-		const handleToggleStatus = vi.fn(async () => { });
+		const handleToggleStatus = vi.fn(async () => {});
 		render(
 			<TaskList
 				tasks={mockTasks}
 				onToggleStatusAction={handleToggleStatus}
-				onDeleteAction={async () => { }}
+				onDeleteAction={async () => {}}
 			/>,
 		);
 
@@ -64,11 +64,11 @@ describe("TaskList Component", () => {
 	});
 
 	it("削除ボタンをクリックしたときに onDelete が呼び出される", () => {
-		const handleDelete = vi.fn(async () => { });
+		const handleDelete = vi.fn(async () => {});
 		render(
 			<TaskList
 				tasks={mockTasks}
-				onToggleStatusAction={async () => { }}
+				onToggleStatusAction={async () => {}}
 				onDeleteAction={handleDelete}
 			/>,
 		);
@@ -83,8 +83,8 @@ describe("TaskList Component", () => {
 		render(
 			<TaskList
 				tasks={[]}
-				onToggleStatusAction={async () => { }}
-				onDeleteAction={async () => { }}
+				onToggleStatusAction={async () => {}}
+				onDeleteAction={async () => {}}
 			/>,
 		);
 
