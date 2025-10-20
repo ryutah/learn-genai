@@ -3,6 +3,13 @@ import { describe, expect, it, vi } from "vitest";
 import { TaskList } from "@/app/tasks/TaskList";
 import type { Task } from "@/types/task";
 
+// next/navigation の useRouter をモックする
+vi.mock("next/navigation", () => ({
+	useRouter: () => ({
+		push: vi.fn(),
+	}),
+}));
+
 const mockTasks: Task[] = [
 	{
 		taskId: "1",
@@ -25,9 +32,8 @@ describe("TaskList Component", () => {
 		render(
 			<TaskList
 				tasks={mockTasks}
-				onToggleStatus={() => {}}
-				onEdit={() => {}}
-				onDelete={() => {}}
+				onToggleStatus={async () => {}}
+				onDelete={async () => {}}
 			/>,
 		);
 
@@ -42,13 +48,12 @@ describe("TaskList Component", () => {
 	});
 
 	it("チェックボックスをクリックしたときに onToggleStatus が呼び出される", () => {
-		const handleToggleStatus = vi.fn();
+		const handleToggleStatus = vi.fn(async () => {});
 		render(
 			<TaskList
 				tasks={mockTasks}
 				onToggleStatus={handleToggleStatus}
-				onEdit={() => {}}
-				onDelete={() => {}}
+				onDelete={async () => {}}
 			/>,
 		);
 
@@ -58,30 +63,12 @@ describe("TaskList Component", () => {
 		expect(handleToggleStatus).toHaveBeenCalledWith("1");
 	});
 
-	it("編集ボタンをクリックしたときに onEdit が呼び出される", () => {
-		const handleEdit = vi.fn();
-		render(
-			<TaskList
-				tasks={mockTasks}
-				onToggleStatus={() => {}}
-				onEdit={handleEdit}
-				onDelete={() => {}}
-			/>,
-		);
-
-		const editButtons = screen.getAllByRole("button", { name: "編集" });
-		fireEvent.click(editButtons[0]);
-
-		expect(handleEdit).toHaveBeenCalledWith("1");
-	});
-
 	it("削除ボタンをクリックしたときに onDelete が呼び出される", () => {
-		const handleDelete = vi.fn();
+		const handleDelete = vi.fn(async () => {});
 		render(
 			<TaskList
 				tasks={mockTasks}
-				onToggleStatus={() => {}}
-				onEdit={() => {}}
+				onToggleStatus={async () => {}}
 				onDelete={handleDelete}
 			/>,
 		);
@@ -96,9 +83,8 @@ describe("TaskList Component", () => {
 		render(
 			<TaskList
 				tasks={[]}
-				onToggleStatus={() => {}}
-				onEdit={() => {}}
-				onDelete={() => {}}
+				onToggleStatus={async () => {}}
+				onDelete={async () => {}}
 			/>,
 		);
 

@@ -10,21 +10,26 @@ import {
 	ListItemText,
 	Typography,
 } from "@mui/material";
+import { useRouter } from "next/navigation";
 import type { Task } from "@/types/task";
 
 type TaskListProps = {
 	tasks: Task[];
-	onToggleStatus: (taskId: string) => void;
-	onEdit: (taskId: string) => void;
-	onDelete: (taskId: string) => void;
+	onToggleStatus: (taskId: string) => Promise<void>;
+	onDelete: (taskId: string) => Promise<void>;
 };
 
 export const TaskList = ({
 	tasks,
 	onToggleStatus,
-	onEdit,
 	onDelete,
 }: TaskListProps) => {
+	const router = useRouter();
+
+	const handleEdit = (taskId: string) => {
+		router.push(`/tasks/edit/${taskId}`);
+	};
+
 	if (tasks.length === 0) {
 		return <Typography>タスクがありません。</Typography>;
 	}
@@ -39,7 +44,7 @@ export const TaskList = ({
 							<IconButton
 								edge="end"
 								aria-label="編集"
-								onClick={() => onEdit(task.taskId)}
+								onClick={() => handleEdit(task.taskId)}
 							>
 								<EditIcon />
 							</IconButton>
