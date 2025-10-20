@@ -15,14 +15,14 @@ import type { Task } from "@/types/task";
 
 type TaskListProps = {
 	tasks: Task[];
-	onToggleStatus: (taskId: string) => Promise<void>;
-	onDelete: (taskId: string) => Promise<void>;
+	onToggleStatusAction: (taskId: string) => Promise<void>;
+	onDeleteAction: (taskId: string) => Promise<void>;
 };
 
 export const TaskList = ({
 	tasks,
-	onToggleStatus,
-	onDelete,
+	onToggleStatusAction: onToggleStatus,
+	onDeleteAction: onDelete,
 }: TaskListProps) => {
 	const router = useRouter();
 

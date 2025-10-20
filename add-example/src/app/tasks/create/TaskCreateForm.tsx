@@ -37,8 +37,8 @@ export const TaskCreateForm = () => {
 					label="期限日"
 					name="dueDate"
 					type="date"
-					InputLabelProps={{
-						shrink: true,
+					slotProps={{
+						inputLabel: { shrink: true },
 					}}
 					fullWidth
 				/>

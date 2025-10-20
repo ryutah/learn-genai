@@ -3,7 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import * as taskRepository from "@/repositories/task";
-import type { Task } from "@/types/task";
 
 /**
  * 新しいタスクを作成する Server Action

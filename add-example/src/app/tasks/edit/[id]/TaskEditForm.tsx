@@ -51,8 +51,8 @@ export const TaskEditForm = ({ task }: TaskEditFormProps) => {
 					name="dueDate"
 					type="date"
 					defaultValue={task.dueDate}
-					InputLabelProps={{
-						shrink: true,
+					slotProps={{
+						inputLabel: { shrink: true },
 					}}
 					fullWidth
 				/>

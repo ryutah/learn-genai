@@ -24,8 +24,8 @@ const TasksPage = () => {
 				</Button>
 				<TaskList
 					tasks={tasks}
-					onToggleStatus={toggleTaskStatus}
-					onDelete={deleteTask}
+					onToggleStatusAction={toggleTaskStatus}
+					onDeleteAction={deleteTask}
 				/>
 			</Box>
 		</Container>
