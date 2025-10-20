@@ -116,8 +116,57 @@ Rel(bq_tools, bigquery, "Connects to", "gRPC/API Call")
 エージェントを実行するには、以下のコマンドを実行します。
 
 ```bash
-cd agents && uv run adk web
+uv run adk web
 ```
+
+## コンテナを使った実行 (Docker / Cloud Run)
+
+コンテナを利用してエージェントを実行することも可能です。
+
+### ローカルでの実行 (Docker)
+
+> [!NOTE]
+> Docker がインストールされている必要があります。
+
+1.  **Docker イメージのビルド:**
+
+    ```bash
+    docker build -t bigquery-analyze-agent .
+    ```
+
+2.  **Docker コンテナの実行:**
+
+    ローカルの GCP 認証情報をコンテナにマウントすることで、コンテナ内から BigQuery へのアクセスを可能にします。
+
+    ```bash
+    docker run -p 8080:8080 \
+      -v ~/.config/gcloud:/home/appuser/.config/gcloud \
+      bigquery-analyze-agent
+    ```
+
+    > [!NOTE]
+    > GCP の認証情報が `~/.config/gcloud` 以外の場所にある場合は、マウントするパスを適宜修正してください。
+
+### Cloud Run へのデプロイ
+
+1.  **Cloud Build を使ってイメージをビルド & Artifact Registry に登録:**
+
+    ```bash
+    gcloud builds submit --tag asia-northeast1-docker.pkg.dev/<gcp-project-id>/bigquery-analyze-agent/agent
+    ```
+
+2.  **Cloud Run にデプロイ:**
+
+    ```bash
+    gcloud run deploy bigquery-analyze-agent \
+      --image asia-northeast1-docker.pkg.dev/<gcp-project-id>/bigquery-analyze-agent/agent \
+      --region asia-northeast1 \
+      --allow-unauthenticated
+    ```
+
+    > [!NOTE]
+    > `<gcp-project-id>` は、ご自身の GCP プロジェクト ID に置き換えてください。
+    > デプロイ先のリージョンは適宜変更してください。
 
 ## ディレクトリ構成
 
